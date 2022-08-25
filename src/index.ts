@@ -1,5 +1,6 @@
 import express from 'express';
 import logger from 'morgan';
+import 'reflect-metadata';
 import {config as dotenv} from 'dotenv';
 
 import {Server} from './server.js';
