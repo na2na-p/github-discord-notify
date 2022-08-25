@@ -9,7 +9,9 @@ RUN yarn install \
 
 FROM node:18-bullseye-slim AS runner
 
-RUN ln -sf /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
+RUN ln -sf /usr/share/zoneinfo/Asia/Tokyo /etc/localtime \
+	&& apt-get update && apt-get install --no-install-recommends -y tini \
+	&& apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/* /root/.gnupg /tmp/library-scripts
 
 WORKDIR /app
 
