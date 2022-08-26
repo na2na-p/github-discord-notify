@@ -14,7 +14,8 @@ const embed = new EmbedBuilder()
 
 webhookClient.send({
 	content: 'Webhook test',
-	username: process.env.DISCORD_BOTNAME,
-	avatarURL: process.env.DISCORD_AVATAR_URL,
+	username: process.env.DISCORD_BOTNAME ? process.env.DISCORD_BOTNAME : 'Github',
+	avatarURL: process.env.DISCORD_AVATAR_URL ?
+		process.env.DISCORD_AVATAR_URL : 'https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png',
 	embeds: [embed],
 });
