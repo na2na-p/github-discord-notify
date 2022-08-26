@@ -1867,6 +1867,11 @@ ts-mixer@^6.0.1:
   resolved "https://registry.yarnpkg.com/ts-mixer/-/ts-mixer-6.0.1.tgz#7c2627fb98047eb5f3c7f2fee39d1521d18fe87a"
   integrity sha512-hvE+ZYXuINrx6Ei6D6hz+PTim0Uf++dYbK9FFifLNwQj+RwKquhQpn868yZsCtJYiclZF1u8l6WZxxKi+vv7Rg==
 
+ts-pattern@^4.0.5:
+  version "4.0.5"
+  resolved "https://registry.yarnpkg.com/ts-pattern/-/ts-pattern-4.0.5.tgz#8e87db265b890ddb0dfc10deda36568296ebd5c3"
+  integrity sha512-Bq44KCEt7JVaNLa148mBCJkcQf4l7jtLEBDuDdeuLynWDA+1a60P4D0rMkqSM9mOKLQbIWUddE9h3XKyKwBeqA==
+
 tsc-alias@^1.7.0:
   version "1.7.0"
   resolved "https://registry.yarnpkg.com/tsc-alias/-/tsc-alias-1.7.0.tgz#733482751133a25b97608ee424f8a1f085fcaaef"
