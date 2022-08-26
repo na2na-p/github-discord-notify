@@ -3,7 +3,7 @@ dotenv();
 
 import {createServer} from 'http';
 import EventSource from 'eventsource';
-import {Webhooks, createNodeMiddleware, EmitterWebhookEventName, EmitterWebhookEvent} from '@octokit/webhooks';
+import {Webhooks, createNodeMiddleware} from '@octokit/webhooks';
 
 import {EmbedBuilder} from '@modules/embedCreate.js';
 import {Post} from '@modules/post.js';
