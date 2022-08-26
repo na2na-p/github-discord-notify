@@ -1,21 +1,16 @@
-import {EmbedBuilder, WebhookClient} from 'discord.js';
+import {EmbedBuilder as eb} from 'discord.js';
 
-import {config as dotenv} from 'dotenv';
-dotenv();
+import {EmitterWebhookEventName, EmitterWebhookEvent} from '@octokit/webhooks';
 
-const id = process.env.DISCORD_WEBHOOK_URL!.split('/').at(-2) as string;
-const token = process.env.DISCORD_WEBHOOK_URL!.split('/').at(-1) as string;
+export class EmbedBuilder<T extends EmitterWebhookEventName> extends eb {
+	// TODO: payloadの型定義見直し
+	constructor(hooksData: EmitterWebhookEvent<T>) {
+		super();
+		console.log(hooksData.id);
+		console.log(hooksData.name);
+		console.log(hooksData.payload);
 
-const webhookClient = new WebhookClient({id, token});
-
-const embed = new EmbedBuilder()
-	.setTitle('Some Title')
-	.setColor(0xC239B3);
-
-webhookClient.send({
-	content: 'Webhook test',
-	username: process.env.DISCORD_BOTNAME ? process.env.DISCORD_BOTNAME : 'Github',
-	avatarURL: process.env.DISCORD_AVATAR_URL ?
-		process.env.DISCORD_AVATAR_URL : 'https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png',
-	embeds: [embed],
-});
+		this.setTitle('Some Title');
+		this.setColor(0xC239B3);
+	}
+}

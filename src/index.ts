@@ -3,7 +3,10 @@ dotenv();
 
 import {createServer} from 'http';
 import EventSource from 'eventsource';
-import {Webhooks, createNodeMiddleware} from '@octokit/webhooks';
+import {Webhooks, createNodeMiddleware, EmitterWebhookEvent} from '@octokit/webhooks';
+
+import {EmbedBuilder} from '@modules/embedCreate.js';
+import {Post} from '@modules/post.js';
 
 export class Server {
 	private readonly port: number = (typeof process.env.PORT === 'number' ? parseInt(process.env.PORT) : 3000);
@@ -11,9 +14,9 @@ export class Server {
 
 	constructor() {
 		this.webhooks.onAny(({id, name, payload}) => {
-			console.log(id);
-			console.log(name, 'event received');
-			console.log(payload);
+			const hooksData = {id, name, payload} as EmitterWebhookEvent<typeof name>;
+			const embed = new EmbedBuilder(hooksData);
+			new Post(embed);
 		});
 
 		if (process.env.NODE_ENV !== 'production') {
