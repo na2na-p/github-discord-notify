@@ -3,7 +3,7 @@ dotenv();
 
 import {createServer} from 'http';
 import EventSource from 'eventsource';
-import {Webhooks, createNodeMiddleware, EmitterWebhookEvent} from '@octokit/webhooks';
+import {Webhooks, createNodeMiddleware, EmitterWebhookEventName, EmitterWebhookEvent} from '@octokit/webhooks';
 
 import {EmbedBuilder} from '@modules/embedCreate.js';
 import {Post} from '@modules/post.js';
@@ -14,8 +14,8 @@ export class Server {
 
 	constructor() {
 		this.webhooks.onAny(({id, name, payload}) => {
-			const hooksData = {id, name, payload} as EmitterWebhookEvent<typeof name>;
-			const embed = new EmbedBuilder(hooksData);
+			// const hooksData = {id, name, payload} as EmitterWebhookEvent<typeof name>;
+			const embed = new EmbedBuilder(id, name, payload);
 			new Post(embed);
 		});
 
