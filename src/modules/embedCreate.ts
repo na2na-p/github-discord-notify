@@ -49,8 +49,8 @@ export class EmbedBuilder<T extends EmitterWebhookEventName> extends eb {
 						payload.sender.avatar_url :
 						'https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png',
 				});
-				this.setTitle(`🆕 Pushed by ${payload.sender.login} with ${payload.commits.length} commits`);
-				this.setDescription(payload.head_commit.message);
+				this.setTitle(`[${payload.repository.full_name}]`);
+				this.setDescription(`🆕 Pushed by ${payload.sender.login} with ${payload.commits.length} commits`);
 				this.setURL(payload.compare_url);
 				payload.commits.forEach((commit: any) => {
 					// 先頭7文字:
