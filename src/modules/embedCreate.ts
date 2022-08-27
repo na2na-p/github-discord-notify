@@ -25,6 +25,7 @@ export class EmbedBuilder<T extends EmitterWebhookEventName> extends eb {
 					// 先頭7文字
 					this.addFields(commit.id.slice(0, 7), commit.message);
 				});
+				console.log('honihogehage');
 			});
 
 		console.log(name);
