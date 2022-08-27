@@ -13,7 +13,6 @@ export class Post {
 		const webhookClient = new WebhookClient({id, token});
 
 		webhookClient.send({
-			content: 'Webhook test',
 			username: process.env.DISCORD_BOTNAME ? process.env.DISCORD_BOTNAME : 'Github',
 			avatarURL: process.env.DISCORD_AVATAR_URL ?
 				process.env.DISCORD_AVATAR_URL :
