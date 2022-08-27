@@ -5,7 +5,7 @@ import {EmitterWebhookEvent, EmitterWebhookEventName} from '@octokit/webhooks';
 
 export class EmbedBuilder<T extends EmitterWebhookEventName> extends eb {
 	// TODO: payloadの型定義見直し
-	constructor(id: string, name: T, payload: any) {
+	constructor(_id: string, name: T, payload: any) {
 		super();
 
 		match(name)
