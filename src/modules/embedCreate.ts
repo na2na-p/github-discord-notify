@@ -1,7 +1,7 @@
 import {EmbedBuilder as eb} from 'discord.js';
 import {match} from 'ts-pattern';
 
-import {EmitterWebhookEvent as _E, EmitterWebhookEventName} from '@octokit/webhooks';
+import {EmitterWebhookEventName} from '@octokit/webhooks';
 
 export class EmbedBuilder<T extends EmitterWebhookEventName> extends eb {
 	// TODO: payloadの型定義見直し
@@ -13,17 +13,17 @@ export class EmbedBuilder<T extends EmitterWebhookEventName> extends eb {
 
 
 		// TODO: Eliminate any
-		// const pl = payload as EmitterWebhookEvent<'push'> & {sender: any, commits: any[]};
+		// const payload = payload as EmitterWebhookEvent<'push'> & {sender: any, commits: any[]};
 		// this.setAuthor({
-		// 	name: pl.sender.login,
-		// 	iconURL: pl.sender.avatar_url ?
-		// 		pl.sender.avatar_url :
+		// 	name: payload.sender.login,
+		// 	iconURL: payload.sender.avatar_url ?
+		// 		payload.sender.avatar_url :
 		// 		'https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png',
 		// });
-		// this.setTitle(`🆕 Pushed by ${pl.sender.login} with ${pl.commits.length} commits`);
+		// this.setTitle(`🆕 Pushed by ${payload.sender.login} with ${payload.commits.length} commits`);
 		// this.setDescription(payload.head_commit.message);
 		// this.setURL(payload.compare_url);
-		// pl.commits.forEach((commit) => {
+		// payload.commits.forEach((commit) => {
 		// 	// 先頭7文字
 		// 	this.addFields(commit.id.slice(0, 7), commit.message);
 		// });
@@ -39,10 +39,23 @@ export class EmbedBuilder<T extends EmitterWebhookEventName> extends eb {
 		this.setColor(0xC239B3);
 	}
 
-	private setEmbed(name: EmitterWebhookEventName, _payload: any) {
+	private setEmbed(name: EmitterWebhookEventName, payload: any) {
 		match(name)
 			.with('push', () => {
 				console.log('push');
+				this.setAuthor({
+					name: payload.sender.login,
+					iconURL: payload.sender.avatar_url ?
+						payload.sender.avatar_url :
+						'https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png',
+				});
+				this.setTitle(`🆕 Pushed by ${payload.sender.login} with ${payload.commits.length} commits`);
+				this.setDescription(payload.head_commit.message);
+				this.setURL(payload.compare_url);
+				payload.commits.forEach((commit: any) => {
+					// 先頭7文字:
+					this.addFields(commit.id.slice(0, 7), commit.message);
+				});
 			})
 			.with('check_run', () => {
 				console.log('check_run');
