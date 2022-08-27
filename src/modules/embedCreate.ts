@@ -59,7 +59,7 @@ export class EmbedBuilder<T extends EmitterWebhookEventName> extends eb {
 			})
 			.with('check_run', () => {
 				console.log('check_run');
-			})
-			.exhaustive();
+			});
+		// .exhaustive();
 	}
 }
