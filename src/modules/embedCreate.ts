@@ -27,8 +27,7 @@ export class EmbedBuilder<T extends EmitterWebhookEventName> extends eb {
 				});
 			});
 
-		console.log(id);
-		console.log(name, 'event received');
+		console.log(name);
 		if (name === 'check_run') {
 			console.log(name);
 		}
