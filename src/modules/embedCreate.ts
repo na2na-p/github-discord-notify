@@ -32,7 +32,7 @@ export class EmbedBuilder<T extends EmitterWebhookEventName> extends eb {
 		if (name === 'check_run') {
 			console.log(name);
 		}
-		console.log(payload);
+		// console.log(payload);
 
 		// this.setTitle(payload);
 		this.setColor(0xC239B3);
