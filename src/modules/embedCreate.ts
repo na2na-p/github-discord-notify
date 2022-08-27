@@ -21,9 +21,9 @@ export class EmbedBuilder<T extends EmitterWebhookEventName> extends eb {
 				this.setTitle(`🆕 Pushed by ${pl.sender.login} with ${pl.commits.length} commits`);
 				this.setDescription(payload.head_commit.message);
 				this.setURL(payload.compare_url);
-				pl.commits.forEach((commit) => {
+				pl.commits.forEach((_commit) => {
 					// 先頭7文字
-					this.addFields(commit.id.slice(0, 7), commit.message);
+					// this.addFields(commit.id.slice(0, 7), commit.message);
 				});
 			});
 
