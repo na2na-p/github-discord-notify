@@ -24,6 +24,7 @@ export class EmbedBuilder<T extends keyof WebhookEventMap> extends eb {
 	private setEmbed() {
 		this.setColor(0xC239B3);
 		(() => {
+			console.log(`still not match with ${this.name}`);
 			match(this.name)
 				.with('push', () => {
 					console.log('match with push');
