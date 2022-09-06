@@ -25,8 +25,8 @@ export class EmbedBuilder<T extends keyof WebhookEventMap> extends eb {
 		this.setColor(0xC239B3);
 		match(this.name)
 			.with('push', () => {
-				console.log('push');
-				console.log(this.name);
+				// console.log('push');
+				// console.log(this.name);
 				const payload = this.payload as WebhookEventMap['push'];
 				this.setAuthor({
 					name: payload.sender.login,

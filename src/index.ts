@@ -17,7 +17,8 @@ export class Server {
 			// const hooksData = {id, name, payload} as EmitterWebhookEvent<typeof name>;
 			console.log('id: ', id);
 			const embed = new EmbedBuilder(id, name, payload);
-			console.log(embed);
+			// console.log(embed);
+			console.log('moge');
 			new Post(embed);
 		});
 
