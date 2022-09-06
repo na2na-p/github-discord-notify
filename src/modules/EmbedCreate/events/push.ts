@@ -50,8 +50,10 @@ export class pushEventEmbedBuilder<T extends EmitterWebhookEventName> {
 		})();
 		embed.addFields(fields);
 
-		embed.setFooter({
-			text: `📅 ${dayjs.default(payload.repository.updated_at).format('YYYY/MM/DD HH:mm')}`,
-		});
+		try {
+			embed.setFooter({
+				text: `📅 ${dayjs.default(payload.head_commit?.timestamp).format('YYYY/MM/DD HH:mm')}`,
+			});
+		} catch {}
 	}
 }
