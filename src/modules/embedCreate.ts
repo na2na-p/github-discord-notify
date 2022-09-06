@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import {EmbedBuilder as eb} from 'discord.js';
+import {EmbedBuilder as eb, APIEmbedField} from 'discord.js';
 import {match} from 'ts-pattern';
 
 import {EmitterWebhookEventName} from '@octokit/webhooks';
@@ -40,10 +40,17 @@ export class EmbedBuilder<T extends nameType> extends eb {
 			this.setTitle(`[${payload.repository.full_name}]`);
 			this.setDescription(`🆕 Pushed by ${payload.sender.login} with ${payload.commits.length} commits`);
 			this.setURL(payload.compare);
-			// payload.commits.forEach((commit: any) => {
-			// 	// 先頭7文字:
-			// 	this.addFields(commit.id.slice(0, 7), commit.message);
-			// });
+			const fields: Array<APIEmbedField> = [];
+			payload.commits.forEach((commit) => {
+				// 先頭7文字:
+				// this.addFields(commit.id.slice(0, 7), commit.message);
+				fields.push({
+					name: commit.id.slice(0, 7),
+					value: commit.message,
+				});
+				console.log(commit);
+			});
+			this.addFields(fields);
 			this.setFooter({
 				text: `📅 ${payload.repository.updated_at}`,
 				iconURL: 'https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png',
