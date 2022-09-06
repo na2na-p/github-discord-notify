@@ -14,7 +14,7 @@ export class EmbedBuilder<T extends nameType> {
 	private _id: string;
 	private name: T;
 	private payload: WebhookEventMap[T];
-	private embed = new eb();
+	public embed = new eb();
 	constructor(id: string, name: T, payload: WebhookEventMap[T]) {
 		this._id = id;
 		this.name = name;

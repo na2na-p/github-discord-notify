@@ -16,10 +16,10 @@ export class Server {
 		this.webhooks.onAny(({id, name, payload}) => {
 			// const hooksData = {id, name, payload} as EmitterWebhookEvent<typeof name>;
 			console.log('id: ', id);
-			const embed = new EmbedBuilder(id, name, payload);
+			const embedBuilder = new EmbedBuilder(id, name, payload);
 			// console.log(embed);
 			console.log('moge');
-			new Post(embed);
+			new Post(embedBuilder.embed);
 		});
 
 		if (process.env.NODE_ENV !== 'production') {
