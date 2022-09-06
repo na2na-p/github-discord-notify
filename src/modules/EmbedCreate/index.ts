@@ -71,7 +71,6 @@ export class EmbedBuilder<T extends nameType> extends eb {
 
 			this.setFooter({
 				text: `📅 ${payload.repository.updated_at}`,
-				iconURL: 'https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png',
 			});
 			break;
 		default:
