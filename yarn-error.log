@@ -1,8 +1,8 @@
 Arguments: 
-  /usr/local/bin/node /usr/local/bin/yarn build
+  /usr/local/bin/node /usr/local/bin/yarn add day.js
 
 PATH: 
-  /home/na2na/develop/github-discord-notify/node_modules/.bin:/tmp/yarn--1661603648978-0.852864028650379:/home/na2na/develop/github-discord-notify/node_modules/.bin:/home/na2na/.config/yarn/link/node_modules/.bin:/home/na2na/.yarn/bin:/usr/local/libexec/lib/node_modules/npm/bin/node-gyp-bin:/usr/local/lib/node_modules/npm/bin/node-gyp-bin:/usr/local/bin/node_modules/npm/bin/node-gyp-bin:/home/na2na/.cargo/bin:/home/na2na/.deno/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/usr/lib/jvm/java-11-openjdk-amd64/bin:/home/na2na/.local/share/JetBrains/Toolbox/scripts:/usr/lib/jvm/java-11-openjdk-amd64/bin:/usr/lib/jvm/java-11-openjdk-amd64/bin
+  /home/na2na/.yarn/bin:/home/na2na/.yarn/bin:/home/na2na/.deno/bin:/home/na2na/.cargo/bin:/home/na2na/.deno/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/home/na2na/.dotnet/tools:/usr/lib/jvm/java-11-openjdk-amd64/bin:/home/na2na/.local/share/JetBrains/Toolbox/scripts:/usr/lib/jvm/java-11-openjdk-amd64/bin:/home/na2na/.local/share/JetBrains/Toolbox/scripts:/usr/lib/jvm/java-11-openjdk-amd64/bin
 
 Yarn version: 
   1.22.19
@@ -14,17 +14,17 @@ Platform:
   linux x64
 
 Trace: 
-  Error: ../package.json: EIO: i/o error, write
-      at writeSync (node:fs:932:3)
-      at SyncWriteStream._write (node:internal/fs/sync_write_stream:26:3)
-      at writeOrBuffer (node:internal/streams/writable:392:12)
-      at _write (node:internal/streams/writable:333:10)
-      at Writable.write (node:internal/streams/writable:337:10)
-      at ConsoleReporter.warn (/usr/local/lib/node_modules/yarn/lib/cli.js:92855:17)
-      at warn (/usr/local/lib/node_modules/yarn/lib/cli.js:51326:23)
-      at module.exports.exports.default (/usr/local/lib/node_modules/yarn/lib/cli.js:37409:7)
-      at /usr/local/lib/node_modules/yarn/lib/cli.js:51337:51
-      at Generator.next (<anonymous>)
+  Error: https://registry.yarnpkg.com/day.js: Not found
+      at params.callback [as _callback] (/usr/local/lib/node_modules/yarn/lib/cli.js:66145:18)
+      at self.callback (/usr/local/lib/node_modules/yarn/lib/cli.js:140890:22)
+      at Request.emit (node:events:513:28)
+      at Request.<anonymous> (/usr/local/lib/node_modules/yarn/lib/cli.js:141862:10)
+      at Request.emit (node:events:513:28)
+      at IncomingMessage.<anonymous> (/usr/local/lib/node_modules/yarn/lib/cli.js:141784:12)
+      at Object.onceWrapper (node:events:627:28)
+      at IncomingMessage.emit (node:events:525:35)
+      at endReadableNT (node:internal/streams/readable:1359:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
 
 npm manifest: 
   {

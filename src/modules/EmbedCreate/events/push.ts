@@ -2,6 +2,11 @@ import {EmbedBuilder, APIEmbedField} from 'discord.js';
 import {EmitterWebhookEventName} from '@octokit/webhooks';
 import {WebhookEventMap} from '@octokit/webhooks-types/schema.js';
 
+// dayjs
+import * as dayjs from 'dayjs';
+
+import {COMMON_VALUES} from '../constants.js';
+
 export class pushEventEmbedBuilder<T extends EmitterWebhookEventName> {
 	constructor(
 		embed: EmbedBuilder,
@@ -13,7 +18,7 @@ export class pushEventEmbedBuilder<T extends EmitterWebhookEventName> {
 			name: payload.sender.login,
 			iconURL: payload.sender.avatar_url ?
 				payload.sender.avatar_url :
-				'https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png',
+				COMMON_VALUES.embedAuthorIconUrl,
 		});
 		embed.setTitle(`[${payload.repository.full_name}]`);
 		embed.setDescription(`🆕 Pushed by ${payload.sender.login} with ${payload.commits.length} commits`);
@@ -33,8 +38,6 @@ export class pushEventEmbedBuilder<T extends EmitterWebhookEventName> {
 							value: `${commits.length - i} commits`,
 							inline: false,
 						});
-						// foreachループから抜ける
-						return;
 					} else {
 						fields.push({
 							name: commit.message,
@@ -48,7 +51,7 @@ export class pushEventEmbedBuilder<T extends EmitterWebhookEventName> {
 		embed.addFields(fields);
 
 		embed.setFooter({
-			text: `📅 ${payload.repository.updated_at}`,
+			text: `📅 ${dayjs.default(payload.repository.updated_at).format('YYYY/MM/DD HH:mm')}`,
 		});
 	}
 }
