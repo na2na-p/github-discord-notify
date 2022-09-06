@@ -26,6 +26,7 @@ export class EmbedBuilder<T extends nameType> extends eb {
 		this.setColor(0xC239B3);
 		switch (this.name) {
 		case 'push':
+			console.log(this.name);
 			console.log('match with push');
 			// console.log('push');
 			// console.log(this.name);
@@ -43,6 +44,10 @@ export class EmbedBuilder<T extends nameType> extends eb {
 			// 	// 先頭7文字:
 			// 	this.addFields(commit.id.slice(0, 7), commit.message);
 			// });
+			this.setFooter({
+				text: `📅 ${payload.repository.updated_at}`,
+				iconURL: 'https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png',
+			});
 			break;
 		default:
 			this.setDescription('some event happened');
