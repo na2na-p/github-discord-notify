@@ -8,6 +8,7 @@ export class pushEventEmbedBuilder<T extends EmitterWebhookEventName> {
 		name: T extends 'push' ? T : never,
 		payload: T extends 'push' ? WebhookEventMap[T] : never,
 	) {
+		console.log(name);
 		embed.setAuthor({
 			name: payload.sender.login,
 			iconURL: payload.sender.avatar_url ?
