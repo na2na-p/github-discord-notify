@@ -15,7 +15,9 @@ export class Server {
 	constructor() {
 		this.webhooks.onAny(({id, name, payload}) => {
 			// const hooksData = {id, name, payload} as EmitterWebhookEvent<typeof name>;
+			console.log('id: ', id);
 			const embed = new EmbedBuilder(id, name, payload);
+			console.log(embed);
 			new Post(embed);
 		});
 
