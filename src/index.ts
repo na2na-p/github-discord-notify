@@ -5,7 +5,7 @@ import {createServer} from 'http';
 import EventSource from 'eventsource';
 import {Webhooks, createNodeMiddleware} from '@octokit/webhooks';
 
-import {EmbedBuilder} from '@modules/embedCreate.js';
+import {EmbedBuilder} from '@/modules/EmbedCreate/index.js';
 import {Post} from '@modules/post.js';
 
 export class Server {

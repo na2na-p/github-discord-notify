@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
 import {EmbedBuilder as eb, APIEmbedField} from 'discord.js';
-import {match} from 'ts-pattern';
+// import {match} from 'ts-pattern';
 
 import {EmitterWebhookEventName} from '@octokit/webhooks';
 import {WebhookEventMap} from '@octokit/webhooks-types/schema.js';
@@ -40,17 +40,35 @@ export class EmbedBuilder<T extends nameType> extends eb {
 			this.setTitle(`[${payload.repository.full_name}]`);
 			this.setDescription(`🆕 Pushed by ${payload.sender.login} with ${payload.commits.length} commits`);
 			this.setURL(payload.compare);
-			const fields: Array<APIEmbedField> = [];
-			payload.commits.forEach((commit) => {
-				// 先頭7文字:
-				// this.addFields(commit.id.slice(0, 7), commit.message);
-				fields.push({
-					name: commit.id.slice(0, 7),
-					value: commit.message,
+			const fields: Array<APIEmbedField> = (() => {
+				// fieldsの最大値は25
+				const max = 25;
+				const commits = payload.commits;
+				const fields: Array<APIEmbedField> = [];
+				[...Array(Math.min(commits.length, max))].forEach((_, i) => {
+					const commit = commits[i];
+					if (commit) {
+						// iが4以上のときは3つ目に"and more {} commits"を追加
+						if (i === max - 1 && commits.length > 4) {
+							fields.push({
+								name: 'And more',
+								value: `${commits.length - i} commits`,
+								inline: false,
+							});
+							// foreachループから抜ける
+							return;
+						} else {
+							fields.push({
+								name: commit.message,
+								value: `[\`${commit.id.slice(0, 7)}\`](${commit.url})`,
+							});
+						}
+					}
 				});
-				console.log(commit);
-			});
+				return fields;
+			})();
 			this.addFields(fields);
+
 			this.setFooter({
 				text: `📅 ${payload.repository.updated_at}`,
 				iconURL: 'https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png',
