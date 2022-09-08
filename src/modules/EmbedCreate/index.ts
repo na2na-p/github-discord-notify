@@ -54,6 +54,7 @@ export class EmbedBuilder<T extends nameType> {
 				new PullRequestClosedEventEmbedBuilder(this.embed, this.name as 'pull_request', this.payload as PullRequestClosedEvent);
 				break;
 			default:
+				this.embed.setDescription('some event happened');
 				break;
 			}
 			break;
