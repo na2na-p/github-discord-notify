@@ -16,7 +16,7 @@ module.exports = {
 	],
 	rules: {
 		'no-tabs': 'off',
-		'max-len': ['error', {code: 120}],
+		'max-len': ['error', {code: 256}],
 		'indent': ['error', 'tab'],
 		'@typescript-eslint/no-unused-vars': ['warn', {argsIgnorePattern: '^_'}],
 		'no-unused-vars': 'off',

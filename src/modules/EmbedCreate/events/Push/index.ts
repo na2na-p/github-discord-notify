@@ -1,19 +1,20 @@
 import {EmbedBuilder, APIEmbedField} from 'discord.js';
-import {EmitterWebhookEventName} from '@octokit/webhooks';
 import {WebhookEventMap} from '@octokit/webhooks-types/schema.js';
+
+import type {nameType} from '../../index.js';
 
 // dayjs
 import * as dayjs from 'dayjs';
 
-import {COMMON_VALUES} from '../constants.js';
+import {COMMON_VALUES} from '../../constants.js';
 
-export class pushEventEmbedBuilder<T extends EmitterWebhookEventName> {
+export class pushEventEmbedBuilder<T extends nameType> {
 	constructor(
 		embed: EmbedBuilder,
-		name: T extends 'push' ? T : never,
+		_name: T extends 'push' ? T : never,
 		payload: T extends 'push' ? WebhookEventMap[T] : never,
 	) {
-		console.log(name);
+		// console.log(name);
 		embed.setAuthor({
 			name: payload.sender.login,
 			iconURL: payload.sender.avatar_url ?
