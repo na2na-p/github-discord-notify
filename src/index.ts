@@ -5,7 +5,7 @@ import {createServer} from 'http';
 import EventSource from 'eventsource';
 import {Webhooks, createNodeMiddleware} from '@octokit/webhooks';
 
-import {EmbedBuilder} from '@modules/embedCreate.js';
+import {EmbedBuilder} from '@/modules/EmbedCreate/index.js';
 import {Post} from '@modules/post.js';
 
 export class Server {
@@ -15,8 +15,11 @@ export class Server {
 	constructor() {
 		this.webhooks.onAny(({id, name, payload}) => {
 			// const hooksData = {id, name, payload} as EmitterWebhookEvent<typeof name>;
-			const embed = new EmbedBuilder(id, name, payload);
-			new Post(embed);
+			console.log('id: ', id);
+			const embedBuilder = new EmbedBuilder(id, name, payload);
+			// console.log(embed);
+			console.log('moge');
+			new Post(embedBuilder.embed);
 		});
 
 		if (process.env.NODE_ENV !== 'production') {
